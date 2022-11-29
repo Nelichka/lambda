@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -12,9 +13,26 @@ public class Main {
         people.add(new Person("Gena", "Mysin", 14));
         people.add(new Person("Sonya", "Ibn ali Hatabn", 90));
 
-        System.out.println(people);
-        Collections.sort(people, new PersonComparator(3));// max кол-во слов в фамилии
-        System.out.println(people);
+        Comparator<Person> comparator = (Person x, Person y) -> {
+            int len1 = x.getSurname().split(" ").length;
+            int len2 = y.getSurname().split(" ").length;
+            int maxLen = 3;
+            if (Math.min(len1, maxLen) != Math.min(len2, maxLen)) {
+                return Integer.compare(len1, len2); // len1-len2
+            }
+            return Integer.compare(x.getAge(), y.getAge());
+        };
+        sortList(people, comparator);
+
+    }
+
+    public static <T> void sortList(List<T> list, Comparator<T> comparator) {
+        list.sort(comparator);
+        list.forEach(System.out::println);
+        // ВЕТКА,  - ПОЧЕМУ ТЕБЯ НЕ ВИДНО?
 
     }
 }
+
+
+
