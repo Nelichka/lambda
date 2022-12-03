@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 
 public class Main {
@@ -12,8 +13,11 @@ public class Main {
         people.add(new Person("Gena", "Mysin", 14));
         people.add(new Person("Sonya", "Ibn ali Hatabn", 90));
 
-        System.out.println(people);
-        Collections.sort(people, new PersonComparator(3));// max кол-во слов в фамилии
+        Predicate<Person> predicate = p -> {
+            int a = p.getAge();
+            return a < 18;
+        };
+        people.removeIf(predicate);
         System.out.println(people);
 
     }
