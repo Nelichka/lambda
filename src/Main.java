@@ -13,8 +13,8 @@ public class Main {
         people.add(new Person("Gena", "Mysin", 14));
         people.add(new Person("Sonya", "Ibn ali Hatabn", 90));
 
-        Predicate<Person> predicate = (Person x) -> {
-            int a = x.getAge();
+        Predicate<Person> predicate = p -> {
+            int a = p.getAge();
             return a < 18;
         };
         people.removeIf(predicate);
